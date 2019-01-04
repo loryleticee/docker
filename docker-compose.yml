@@ -1,0 +1,17 @@
+version: '3.7'
+services: 
+  web:
+    build: .
+    ports:
+      - '30000:80'
+  database:
+    image: 'mariadb:10.4'
+    environment:
+      #obliégé de rajouter le passe , les containers ne communique pas leurs variable d'environnement 
+      - MYSQL_ROOT_PASSWORD=root
+  adminer: 
+    image: 'adminer'
+    ports:
+      - '50000:8080'
+    depends_on:
+      - database
